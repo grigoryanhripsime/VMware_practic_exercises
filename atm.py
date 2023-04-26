@@ -22,23 +22,23 @@ import datetime
 
 class Screen:
     #function to ask for password
-    def ask_for_password():
-        print("Enter your password: ")
+    def ask_for_password(self):
+        print("Enter your password: ", end = "")
 
     #function to ask type of transaction
-    def transaction_type():
-        print("Enter 1 to check your card's balance or enter 2 to get out money: ")
+    def transaction_type(self):
+        print("Enter 1 to check your card's balance or enter 2 to get out money: ", end = "")
 
     #function to show balance
-    def show_balance(balance):
+    def show_balance(self, balance):
         print("Balance: ", balance)
 
     #function to ask for amount of money
-    def get_money():
-        print("How much money do you want to get: ")
+    def get_money(self):
+        print("How much money do you want to get: ", end = "")
 
     #function to show transaction's status
-    def status(status):
+    def status(self, status):
         if status:
             print("Succeed.")
         else:
@@ -46,7 +46,7 @@ class Screen:
 
 class Keyboard:
     #function to get input
-    def get_input():
+    def get_input(self):
         inpt = int(input())
         return inpt
 
@@ -59,13 +59,14 @@ class Card_reader:
 
 class Cash_giver:
     #function to - amount that inputed customer from card balance
-    def sub_amount(balance, amount):
+    def sub_amount(self, balance, amount):
         balance = balance - amount
         return balance
 
 class Receipt_printer:
     #function to give/print info about transaction
-    def get_receipt(card_number,balance, amount, date, check):
+    def get_receipt(card_number, balance, amount, date, check):
+        print("Receipt")
         print("Card number: ", card_number)
         print("Card balance: ", balance)
         if check == 2:
@@ -77,7 +78,7 @@ class ATM:
     number_of_atm = 0 #id
     def __init__(self, screen, keyboard, card_reader, cash_giver, receipt_printer):
         self.screen = screen
-        self.keyyboard = keyboard
+        self.keyboard = keyboard
         self.card_reader = card_reader
         self.cash_giver = cash_giver
         self.receipt_printer = receipt_printer
@@ -89,26 +90,30 @@ class ATM:
         passwrd = self.keyboard.get_input()
         if self.card_reader.password == passwrd:
             self.screen.status(True)
+            return True
         else:
             self.screen.status(False)
+            return False
 
     #function that asks for transaction's type
     def action_type(self):
-        self.screen.transaction_type()
-        typee = self.keyboard.get_input()
-        if typee == 1:
-            self.screen.show_balance(self.card_reader.balance)
-        elif typee == 2:
-            self.screen.get_money()
-            amount = self.keyboard.get_input()
-            if amount <= self.card_reader.balance:
-                self.card_reader.balance = self.cash_giver.sub_amount(card_reader.balance, amount)
-                self.screen.status(True)
+        amount = 0
+        if self.asking_password():
+            self.screen.transaction_type()
+            typee = self.keyboard.get_input()
+            if typee == 1:
+                self.screen.show_balance(self.card_reader.balance)
+            elif typee == 2:
+                self.screen.get_money()
+                amount = self.keyboard.get_input()
+                if amount <= self.card_reader.balance:
+                    self.card_reader.balance = self.cash_giver.sub_amount(self.card_reader.balance, amount)
+                    self.screen.status(True)
+                else:
+                    self.screen.status(False)
             else:
                 self.screen.status(False)
-        else:
-            self.screen.status(False)
-        self.receipt_printer.get_receipt(card_reader.card_number, card_reader.balance, amount, datetime.datetime.now(), typee)
+            self.receipt_printer.get_receipt(self.card_reader.card_number, self.card_reader.balance, amount, datetime.datetime.now(), typee)
 
 #making card class
 class Card:
@@ -124,7 +129,6 @@ def main():
     #making customer
     customer = Card("4012888888881881", 1234, 100000)
     atm.card_reader.get_card(customer)
-    atm.asking_password()
     atm.action_type()
     print("Done")
 
