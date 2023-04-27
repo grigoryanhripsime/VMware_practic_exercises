@@ -97,7 +97,6 @@ def my_turn(bulls, cows):
 
 
 def main():
-    print(hidden_num)
     print("Bulls and cows game")
     my_turn(0, 0)
     while True:
