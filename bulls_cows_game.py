@@ -100,8 +100,9 @@ def main():
     print("Bulls and cows game")
     my_turn(0, 0)
     while True:
-        bulls = int(input("Bulls: "))
-        cows = int(input("Cows: "))
+        while bulls + cows < 4:
+            bulls = int(input("Bulls: "))
+            cows = int(input("Cows: "))
         aaa = your_turn()
         bbb = my_turn(bulls, cows)
         if aaa or bbb:
