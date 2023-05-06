@@ -3,7 +3,7 @@ package VMware_practic_exercises.Java.Tictactoe.game;
 import java.util.Scanner;
 
 public class Player {
-    private char marker;
+    protected char marker;
 
     public Player() {
         this.marker = 'X';

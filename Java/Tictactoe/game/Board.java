@@ -8,23 +8,29 @@ public class Board {
         gameBoard = new char[3][3];
     }
 
+    public char[][] getBoard() {
+        return gameBoard;
+    }
 
     void printBoard() {
         System.out.println(this);
     }
 
-    boolean submitMove(String move, char player){
+    void submitMove(String move, char player) throws Exception {
         //TODO: implement
         // Puts the player marker on the board if move is valid
         // move consists of 2 digits representing the row and column, like "12" (first row, second column)
         // if it is an invalid move then false is returned
         int x = move.charAt(0) - '0';
         int y = move.charAt(1) - '0';
+        if (x < 0 || x > 2 || y < 0 || y > 2)
+            throw new Exception("Invalid input");
         if (gameBoard[x][y] == '\u0000') {
             gameBoard[x][y] = player;
-            return true;
         }
-        return false;
+        else {
+            throw new Exception("There is a symbol");
+        }
     }
 
     boolean isBoardFull() {

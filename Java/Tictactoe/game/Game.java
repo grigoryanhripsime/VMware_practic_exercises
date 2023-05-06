@@ -2,7 +2,7 @@ package VMware_practic_exercises.Java.Tictactoe.game;
 
 public class Game {
     private Player player1;
-    private Player player2;
+    private Player player2; //Bot
     private Board board;
 
     public Game() {
@@ -34,16 +34,53 @@ public class Game {
         // At the end this method should print the final result of the board and return the marker of the winner or the word "Tie" if no one wins
         String move;
         do {
-            do {
+            //getting player's move
+            while (true) {
                 board.printBoard();
                 System.out.println("Player1");
                 move = player1.getMove(board);
-            } while (board.submitMove(move, player1.getMarker()) == false);
-            do {
+                try {
+                    board.submitMove(move, player1.getMarker());
+                    break;
+                }
+                catch (Exception e) {
+                    System.out.println("Invalid input");
+                }
+                finally {
+                    if (getResult() != null) {
+                        return getResult();
+                    }
+                }
+            }
+
+            //Bot
+            board.printBoard();
+            System.out.println("Bot");
+            move = player2.getMove(board);
+            if (getResult() != null) {
+                return getResult();
+            }
+
+            //Player2
+            /*
+            while (true) {
                 board.printBoard();
                 System.out.println("Player2");
                 move = player2.getMove(board);
-            } while (board.submitMove(move, player2.getMarker()) == false);
+                try {
+                    board.submitMove(move, player2.getMarker());
+                    break;
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    if (getResult() != null) {
+                        return getResult();
+                    }
+                }
+            }
+             */
         } while(getResult() == null);
 
         return getResult();
@@ -53,12 +90,15 @@ public class Game {
         //TODO: implement
         // returns the result of the game: the marker of the winner or the word "Tie"
         if (board.isWinner(player1.getMarker())) {
-            return "" + player1.getMarker();
+            board.printBoard();
+            return "Player " + player1.getMarker() + " won";
         }
         else if (board.isWinner(player2.getMarker())) {
-            return "" + player2.getMarker();
+            board.printBoard();
+            return "Player " + player2.getMarker() + " won";
         }
         else if (board.isBoardFull()) {
+            board.printBoard();
             return "Tie";
         }
         return null;
