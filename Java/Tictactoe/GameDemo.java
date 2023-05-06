@@ -1,6 +1,6 @@
-package Tictactoe;
+package VMware_practic_exercises.Java.Tictactoe;
 
-import Tictactoe.game.Game;
+import VMware_practic_exercises.Java.Tictactoe.game.Game;
 
 public class GameDemo {
     public static void main(String[] args) {

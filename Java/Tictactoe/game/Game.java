@@ -1,4 +1,4 @@
-package Tictactoe.game;
+package VMware_practic_exercises.Java.Tictactoe.game;
 
 public class Game {
     private Player player1;
