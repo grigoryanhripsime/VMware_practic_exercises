@@ -1,14 +1,12 @@
 package VMware_practic_exercises.Java.Tictactoe.game;
 public class Bot extends Player {
-    private int round = 0;
-    public Bot(char o, boolean b) {
+    public Bot(char o) {
         this.marker = o;
     }
 
     boolean makeMove(String move, Board board) {
         try {
             board.submitMove(move, getMarker());
-            round++;
             return true;
         }
         catch (Exception e) {
@@ -18,10 +16,8 @@ public class Bot extends Player {
     }
     String getMove(Board board) {
         String move;
-        int counter = 0;
 
         //Emergency
-        if (round >= 3) {
             char[][] game_board = board.getBoard();
             if (game_board[1][1] == 'X') {
                 if (game_board[0][0] == 'X') {
@@ -81,7 +77,6 @@ public class Bot extends Player {
                     if (makeMove("00", board)) return "00";
                 }
             }
-        }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {

@@ -23,7 +23,6 @@ public class Player {
         // Prints the board, asks from the player to make a move, returns the move
         Scanner scanner = new Scanner(System.in);
         System.out.print("Make a move: ");
-        String move = scanner.nextLine();
-        return move;
+        return scanner.nextLine();
     }
 }

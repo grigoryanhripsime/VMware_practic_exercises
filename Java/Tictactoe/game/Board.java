@@ -2,7 +2,7 @@ package VMware_practic_exercises.Java.Tictactoe.game;
 
 public class Board {
 
-    private char[][] gameBoard;
+    private final char[][] gameBoard;
 
     public Board() {
         gameBoard = new char[3][3];
@@ -54,10 +54,7 @@ public class Board {
         if (gameBoard[0][0] == player && gameBoard[1][1] == player && gameBoard[2][2] == player) {
             return true;
         }
-        else if (gameBoard[0][2] == player && gameBoard[1][1] == player && gameBoard[2][0] == player) {
-            return true;
-        }
-        return false;
+        else return gameBoard[0][2] == player && gameBoard[1][1] == player && gameBoard[2][0] == player;
     }
 
 

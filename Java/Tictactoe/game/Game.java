@@ -1,9 +1,9 @@
 package VMware_practic_exercises.Java.Tictactoe.game;
 
 public class Game {
-    private Player player1;
-    private Player player2; //Bot
-    private Board board;
+    private final Player player1;
+    private final Player player2; //Bot
+    private final Board board;
 
     public Game() {
         this.player1 = new Player();
@@ -42,25 +42,22 @@ public class Game {
                 try {
                     board.submitMove(move, player1.getMarker());
                     break;
-                }
-                catch (Exception e) {
-                    System.out.println("Invalid input");
-                }
-                finally {
-                    if (getResult() != null) {
-                        return getResult();
-                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
             }
-
-            //Bot
-            board.printBoard();
-            System.out.println("Bot");
-            move = player2.getMove(board);
             if (getResult() != null) {
                 return getResult();
             }
 
+
+            //Bot
+            board.printBoard();
+            System.out.println("Bot");
+            player2.getMove(board);
+            if (getResult() != null) {
+                return getResult();
+            }
             //Player2
             /*
             while (true) {
