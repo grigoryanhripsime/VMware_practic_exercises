@@ -21,6 +21,7 @@ public class Bot extends Player {
         int counter = 0;
 
         //Emergency
+        if (round >= 3) {
             char[][] game_board = board.getBoard();
             if (game_board[1][1] == 'X') {
                 if (game_board[0][0] == 'X') {
@@ -72,15 +73,15 @@ public class Bot extends Player {
                     if (makeMove("02", board)) return "02";
                 }
             }
-            if (game_board[2][1] == 'X') {
-                if (game_board[2][0] == 'X') {
-                    if (makeMove("22", board)) return "22";
-                }
-                if (game_board[2][2] == 'X') {
+            if (game_board[1][0] == 'X') {
+                if (game_board[0][0] == 'X') {
                     if (makeMove("20", board)) return "20";
                 }
+                if (game_board[2][0] == 'X') {
+                    if (makeMove("00", board)) return "00";
+                }
             }
-
+        }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -92,18 +93,3 @@ public class Bot extends Player {
         return null;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
- */
