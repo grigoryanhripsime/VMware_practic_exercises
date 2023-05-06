@@ -1,6 +1,8 @@
+package VMware_practic_exercises.Java;
+
 import java.util.Scanner;
 
-public class Reverse_array {
+public class Reverse_char_array {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();

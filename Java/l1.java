@@ -1,6 +1,8 @@
+package VMware_practic_exercises.Java;
+
 import java.util.Scanner;
 
-public class ex1 {
+public class l1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         //System.out.print("n = ");

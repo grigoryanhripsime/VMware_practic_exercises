@@ -1,8 +1,8 @@
-package odd_count;
+package VMware_practic_exercises.Java;
 
 import java.util.Arrays;
 
-public class Main {
+public class odd_count {
 	public static void main(String[] args) {
 		int[] arr = {1, 4, 5, 3, 2, 4, 1, 1, 5, 3, 4, 1, 2};
 		Arrays.sort(arr);

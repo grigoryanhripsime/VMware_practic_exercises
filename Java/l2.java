@@ -1,6 +1,8 @@
+package VMware_practic_exercises.Java;
+
 import java.util.Scanner;
 
-public class SwitchExample {
+public class l2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         //int n = scanner.nextInt();
