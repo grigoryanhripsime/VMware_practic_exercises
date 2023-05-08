@@ -27,7 +27,13 @@ hidden_num = num_str
 def your_turn():
     #checking for valid input
     while True:
-        in_num = input("Your turn: ")
+        try:
+            in_num = input("Your turn: ")
+            if len(in_num) != 4:
+                raise Exception("Invalid input")
+        except:
+            print(Exception)
+            continue
         if not (in_num[0] == "0" or in_num[0] == in_num[1] or in_num[0] == in_num[2] or in_num[0] == in_num[3] or in_num[1] == in_num[2] or in_num[1] == in_num[3] or in_num[2] == in_num[3]):
             break
         print("Invalid input.")
@@ -52,6 +58,7 @@ def your_turn():
 inputed_nums = []
 digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 def my_turn(bulls, cows):
+    print(bulls, cows)
     if bulls == 4:
         print("I won!!!")
         return True
@@ -100,9 +107,17 @@ def main():
     print("Bulls and cows game")
     my_turn(0, 0)
     while True:
-        while bulls + cows < 4:
-            bulls = int(input("Bulls: "))
-            cows = int(input("Cows: "))
+        while True:
+            try:
+                bulls = int(input("Bulls: "))
+                cows = int(input("Cows: "))
+                if bulls + cows >= 0 and bulls + cows <= 4:
+                    break
+            except:
+                print(Exception)
+        if bulls == 4:
+            print("I won")
+            break
         aaa = your_turn()
         bbb = my_turn(bulls, cows)
         if aaa or bbb:
