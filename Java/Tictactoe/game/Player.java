@@ -1,28 +1,55 @@
-package VMware_practic_exercises.Java.Tictactoe.game;
+package Tictactoe.game;
 
 import java.util.Scanner;
 
 public class Player {
     protected char marker;
+    public String name;
 
-    public Player() {
+
+    public Player(String name) {
         this.marker = 'X';
+        this.name = name;
     }
 
-    public Player(char marker) {
+    public Player(char marker, String name) {
         this.marker = marker;
+        this.name = name;
     }
-
 
     char getMarker() {
         return marker;
     }
 
-    String getMove(Board board) {
+    String getMove(Board board) throws Exception {
         //TODO: implement
         // Prints the board, asks from the player to make a move, returns the move
         Scanner scanner = new Scanner(System.in);
         System.out.print("Make a move: ");
-        return scanner.nextLine();
+        String move = scanner.nextLine();
+        return move;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Player's name = " + this.name + "\n" +
+                "Player's mark = " + this.getMarker();
+
+    }
+
+
+    @Override
+    public boolean equals(Object player) {
+        if (! (player instanceof Player)) {
+            return false;
+        }
+        if (this == player)
+            return true;
+        if (this.name == ((Player) player).name && this.getMarker() == ((Player) player).getMarker()) {
+            return true;
+        }
+        return false;
     }
 }
+
