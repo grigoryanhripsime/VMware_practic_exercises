@@ -1,105 +1,88 @@
 package Tictactoe.game;
-import java.util.Scanner;
-public class Game {
-    private final Player player1;
-    private final Player player2; //Bot
-    private final Board board;
 
-    public Game() {
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        this.player1 = new Player(name);
-        this.player2 = new Player('O', "Bot");
-        this.board = new Board();
+public class Board {
+
+    private final char[][] gameBoard;
+
+    public Board() {
+        gameBoard = new char[3][3];
     }
 
-//    public Game(Board board){
-//        this.player1 = new Player();
-//        this.player2 = new Player('O', name);
-//        this.board = board;
-//    }
-
-    public Game(Board board, Player player1, Player player2){
-        this.player1 = player1;
-        this.player2 = player2;
-        this.board = board;
+    public Board(Board board) {
+        this.gameBoard = board.gameBoard;
     }
 
-    public String playGame() throws Exception {
+    public char[][] getBoard() {
+        return gameBoard;
+    }
+
+    void printBoard() {
+        System.out.println(this);
+    }
+
+    void submitMove(String move, char player) throws Exception {
         //TODO: implement
-        // Plays the game:
-        // 1. Prints the board
-        // 2. Asks from a current player to make a move
-        // 3. Submits the move, if the move was submitted then continues from point 1 the same thing for the other player,
-        //    if the move was not submitted (invalid move) then prints appropriate message and asks to make a move again from the same player
-        // Keeps doing the above steps until one of the players wins, or the board gets full and no one wins
-        // At the end this method should print the final result of the board and return the marker of the winner or the word "Tie" if no one wins
-        String move;
-        do {
-            //getting player's move
-            while (true) {
-                board.printBoard();
-                System.out.println("Player " + player1.name);
-                move = player1.getMove(board);
-                try {
-                    board.submitMove(move, player1.getMarker());
-                    break;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            if (getResult() != null) {
-                return getResult();
-            }
-
-
-            //Bot
-            board.printBoard();
-            System.out.println("Bot");
-            player2.getMove(board);
-            if (getResult() != null) {
-                return getResult();
-            }
-            //Player2
-            /*
-            while (true) {
-                board.printBoard();
-                System.out.println("Player2");
-                move = player2.getMove(board);
-                try {
-                    board.submitMove(move, player2.getMarker());
-                    break;
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    if (getResult() != null) {
-                        return getResult();
-                    }
-                }
-            }
-             */
-        } while(getResult() == null);
-
-        return getResult();
+        // Puts the player marker on the board if move is valid
+        // move consists of 2 digits representing the row and column, like "12" (first row, second column)
+        // if it is an invalid move then false is returned
+        int x = move.charAt(0) - '0';
+        int y = move.charAt(1) - '0';
+        if (x < 0 || x > 2 || y < 0 || y > 2)
+            throw new Exception("Invalid input");
+        if (gameBoard[x][y] == '\u0000') {
+            gameBoard[x][y] = player;
+        }
+        else {
+            throw new Exception("There is a symbol");
+        }
     }
 
-    private String getResult(){
+    boolean isBoardFull() {
         //TODO: implement
-        // returns the result of the game: the marker of the winner or the word "Tie"
-        if (board.isWinner(player1.getMarker())) {
-            board.printBoard();
-            return "Player " + player1.name + " won";
-        }
-        else if (board.isWinner(player2.getMarker())) {
-            board.printBoard();
-            return "Player " + player2.name + " won";
-        }
-        else if (board.isBoardFull()) {
-            board.printBoard();
-            return "Tie";
-        }
-        return null;
+        // Checks whether the board is full
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (gameBoard[i][j] == '\u0000')
+                    return false;
+        return true;
     }
+
+    boolean isWinner(char player) {
+        //TODO: implement
+        // Checks whether 'X' or 'O' is a winner
+        for (int i = 0; i < 3; i++)
+            if (gameBoard[i][0] == player && gameBoard[i][1] == player && gameBoard[i][2] == player)
+                return true;
+            else if (gameBoard[0][i] == player && gameBoard[1][i] == player && gameBoard[2][i] == player)
+                return true;
+        if (gameBoard[0][0] == player && gameBoard[1][1] == player && gameBoard[2][2] == player) {
+            return true;
+        }
+        else return gameBoard[0][2] == player && gameBoard[1][1] == player && gameBoard[2][0] == player;
+    }
+
+    @Override
+    public String toString(){
+        //coverts the board to string like:
+        /*      X | O | X
+                -----------
+                O | X | O
+                -----------
+                O | X | X*/
+        return " " +
+                gameBoard[0][0] + " | " +
+                gameBoard[0][1] + " | " +
+                gameBoard[0][2] +
+                "\n-----------\n" +
+                " " +
+                gameBoard[1][0] + " | " +
+                gameBoard[1][1] + " | " +
+                gameBoard[1][2] +
+                "\n-----------\n" +
+                " " +
+                gameBoard[2][0] + " | " +
+                gameBoard[2][1] + " | " +
+                gameBoard[2][2];
+    }
+
 }
