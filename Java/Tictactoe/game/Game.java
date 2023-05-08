@@ -1,21 +1,23 @@
-package VMware_practic_exercises.Java.Tictactoe.game;
-
+package Tictactoe.game;
+import java.util.Scanner;
 public class Game {
     private final Player player1;
     private final Player player2; //Bot
     private final Board board;
 
     public Game() {
-        this.player1 = new Player();
-        this.player2 = new Player('O');
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        this.player1 = new Player(name);
+        this.player2 = new Player('O', "Bot");
         this.board = new Board();
     }
 
-    public Game(Board board){
-        this.player1 = new Player();
-        this.player2 = new Player('O');
-        this.board = board;
-    }
+//    public Game(Board board){
+//        this.player1 = new Player();
+//        this.player2 = new Player('O', name);
+//        this.board = board;
+//    }
 
     public Game(Board board, Player player1, Player player2){
         this.player1 = player1;
@@ -23,7 +25,7 @@ public class Game {
         this.board = board;
     }
 
-    public String playGame() {
+    public String playGame() throws Exception {
         //TODO: implement
         // Plays the game:
         // 1. Prints the board
@@ -37,7 +39,7 @@ public class Game {
             //getting player's move
             while (true) {
                 board.printBoard();
-                System.out.println("Player1");
+                System.out.println("Player " + player1.name);
                 move = player1.getMove(board);
                 try {
                     board.submitMove(move, player1.getMarker());
@@ -88,11 +90,11 @@ public class Game {
         // returns the result of the game: the marker of the winner or the word "Tie"
         if (board.isWinner(player1.getMarker())) {
             board.printBoard();
-            return "Player " + player1.getMarker() + " won";
+            return "Player " + player1.name + " won";
         }
         else if (board.isWinner(player2.getMarker())) {
             board.printBoard();
-            return "Player " + player2.getMarker() + " won";
+            return "Player " + player2.name + " won";
         }
         else if (board.isBoardFull()) {
             board.printBoard();
