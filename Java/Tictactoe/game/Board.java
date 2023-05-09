@@ -1,13 +1,15 @@
-package Tictactoe.game;
+package VMware_practic_exercises.Java.Tictactoe.game;
 
 public class Board {
 
     private final char[][] gameBoard;
 
+    //default Board size
     public Board() {
         gameBoard = new char[3][3];
     }
 
+    //copy constructor
     public Board(Board board) {
         this.gameBoard = board.gameBoard;
     }
@@ -33,7 +35,7 @@ public class Board {
             gameBoard[x][y] = player;
         }
         else {
-            throw new Exception("There is a symbol");
+                throw new Exception("There is a symbol");
         }
     }
 
