@@ -1,35 +1,66 @@
-package Tictactoe;
+package VMware_practic_exercises.Java.Tictactoe;
 
-import Tictactoe.game.Board;
-import Tictactoe.game.Bot;
-import Tictactoe.game.Game;
-import Tictactoe.game.Player;
+import VMware_practic_exercises.Java.Tictactoe.game.Board;
+import VMware_practic_exercises.Java.Tictactoe.game.Bot;
+import VMware_practic_exercises.Java.Tictactoe.game.Game;
+import VMware_practic_exercises.Java.Tictactoe.game.Player;
 
 import java.util.Scanner;
 
 public class GameDemo {
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your name: ");
-        String name1 = scanner.nextLine();
-//        String name2;
-//        while (true) {
-//            name2 = scanner.nextLine();
-//            if (name1 != name2) {
-//                System.out.println("Invalid input");
-//                break;
-//            }
-//        }
-//        Game game = new Game(new Board(), new Player(name1), new Player(name2));
-        System.out.print("Choose a strategy(Beginner/Intermediate): ");
-        Bot.Strategy str = Bot.Strategy.valueOf(scanner.next());
-        Game game = new Game(new Board(), new Player(name1), new Bot(str));
-
-        //Game game = new Game();
+        Game game;
+        while (true) {
+            try {
+                game = game_type();
+                break;
+            }
+            catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
         String result = game.playGame();
         System.out.println();
         System.out.println("-----------------------");
         System.out.println("Result: " + result);
         System.out.println();
     }
+    static Game game_type () throws Exception {
+        Scanner scanner = new Scanner(System.in);
+
+        //how do you want to play(with friend, or with computer)?
+        System.out.print("How do you want to play(with friend/with computer): ");
+        String game_type = scanner.nextLine();
+
+        if (game_type.equals("with friend")) {
+            System.out.print("Enter first player's name: ");
+            String name1 = scanner.nextLine();
+            System.out.print("Enter first player's marker: ");
+            char marker1 = scanner.nextLine().charAt(0);
+            System.out.print("Enter second player's name: ");
+            String name2 = scanner.nextLine();
+            System.out.print("Enter second player's marker: ");
+            char marker2 = scanner.nextLine().charAt(0);
+
+            if (new Player(marker1, name1).equals(new Player(marker2, name2))) {
+                throw new Exception("You entered the same name for both players");
+            }
+            return new Game(new Player(marker1, name1), new Player(marker2, name2));
+        }
+        else if (game_type.equals("with computer")) {
+            System.out.print("Enter your name: ");
+            String name = scanner.nextLine();
+            if (name == "Bot") {
+                throw new Exception("You entered the same name for both players");
+            }
+            System.out.print("Choose a strategy(Beginner/Intermediate/Advanced): ");
+            Bot.Strategy str = Bot.Strategy.valueOf(scanner.next());
+            return new Game(new Player(name), str);
+        }
+        else {
+            throw new Exception("Invalid game type");
+        }
+
+    }
+
 }
