@@ -1,4 +1,4 @@
-package Tictactoe.game;
+package VMware_practic_exercises.Java.Tictactoe.game;
 
 import java.util.Scanner;
 
@@ -6,12 +6,13 @@ public class Player {
     protected char marker;
     public String name;
 
-
+    //playing with computer
     public Player(String name) {
         this.marker = 'X';
         this.name = name;
     }
 
+    //playing with friend
     public Player(char marker, String name) {
         this.marker = marker;
         this.name = name;
@@ -30,14 +31,12 @@ public class Player {
         return move;
     }
 
-
     @Override
     public String toString() {
         return "Player's name = " + this.name + "\n" +
                 "Player's mark = " + this.getMarker();
 
     }
-
 
     @Override
     public boolean equals(Object player) {
@@ -46,7 +45,7 @@ public class Player {
         }
         if (this == player)
             return true;
-        if (this.name == ((Player) player).name && this.getMarker() == ((Player) player).getMarker()) {
+        if (this.name == ((Player) player).name || this.getMarker() == ((Player) player).getMarker()) {
             return true;
         }
         return false;
