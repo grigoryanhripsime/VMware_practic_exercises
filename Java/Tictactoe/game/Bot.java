@@ -7,14 +7,9 @@ public class Bot implements Moveable {
     private char marker;
 
 
-    public static int getPlayerCount() {
+    protected static int getPlayerCount() {
         return Bot.count;
     }
-
-    private static void setPlayerCount() {
-        Bot.count++;
-    }
-
     public enum Strategy {
         Beginner ,
         Intermediate,
@@ -22,7 +17,9 @@ public class Bot implements Moveable {
     };
     private Strategy str;
 
-
+    protected static void setPlayerCount() {
+        Bot.count++;
+    }
     public Bot(Strategy strategy) {
         this.name = "Bot";
         this.marker = 'O';

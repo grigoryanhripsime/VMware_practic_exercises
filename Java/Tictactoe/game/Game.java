@@ -1,4 +1,5 @@
 package VMware_practic_exercises.Java.Tictactoe.game;
+
 public class Game {
     private final Player player1;
     private final Player player2;
@@ -62,7 +63,7 @@ public class Game {
                     return res;
                 }
             }
-            else if (player2 != null) {
+            else if (player2 != null){
                 //getting player1's move
                 while (true) {
                     board.printBoard();

@@ -1,4 +1,27 @@
-public class SinglyLinkedList {
+package VMware_practic_exercises;
+
+
+public class LList {
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.insert(0, 1);
+        list.insert(1, 2);
+        list.insert(2, 3);
+        list.insert(0, 3);
+        list.insert(3, 10);
+        list.insert(4, 5);
+        list.insert(5, 11);
+        list.insert(6, 3);
+        System.out.println("Just print");
+        list.print();
+        System.out.println("Edited print");
+        list.del_odd();
+        list.print();
+
+    }
+}
+
+class SinglyLinkedList {
     public Node head;
 
     public class Node {
@@ -106,23 +129,3 @@ public class SinglyLinkedList {
 
 
 
-
-public class SlinkedListDemo {
-    public static void main(String[] args) {
-        SinglyLinkedList list = new SinglyLinkedList();
-        list.insert(0, 1);
-        list.insert(1, 2);
-        list.insert(2, 3);
-        list.insert(0, 3);
-        list.insert(3, 10);
-        list.insert(4, 5);
-        list.insert(5, 11);
-        list.insert(6, 3);
-        System.out.println("Just print");
-        list.print();
-        System.out.println("Edited print");
-        list.del_odd();
-        list.print();
-
-    }
-}

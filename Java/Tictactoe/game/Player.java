@@ -1,15 +1,17 @@
 package VMware_practic_exercises.Java.Tictactoe.game;
+
 import java.util.Scanner;
 
 public class Player implements Moveable {
     protected static int count = 0;
-    public static int getPlayerCount() {
+    protected static int getPlayerCount() {
         return count;
     }
-    private static void setPlayerCount(){
+
+    protected static void setPlayerCount(){
         Player.count++;
     }
-    private char marker;
+    protected char marker;
     public String name;
 
     //playing with computer
@@ -17,7 +19,6 @@ public class Player implements Moveable {
         this.marker = 'X';
         this.name = name;
         //System.out.println(count + "LIne 17 Player");
-        Player.setPlayerCount();
     }
 
     //playing with friend
@@ -25,7 +26,6 @@ public class Player implements Moveable {
         this.marker = marker;
         this.name = name;
         //System.out.println(count + "LIne 25 Player");
-        Player.setPlayerCount();
     }
 
     public char getMarker() {
@@ -67,5 +67,3 @@ public class Player implements Moveable {
         return false;
     }
 }
-
-

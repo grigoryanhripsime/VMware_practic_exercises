@@ -1,4 +1,5 @@
 package VMware_practic_exercises.Java.Tictactoe.game;
+
 public class Board {
 
     private final char[][] gameBoard;

@@ -4,7 +4,9 @@ import VMware_practic_exercises.Java.Tictactoe.game.Board;
 import VMware_practic_exercises.Java.Tictactoe.game.Bot;
 import VMware_practic_exercises.Java.Tictactoe.game.Game;
 import VMware_practic_exercises.Java.Tictactoe.game.Player;
+
 import java.util.Scanner;
+
 public class GameDemo {
     public static void main(String[] args) throws Exception {
         Game game;
