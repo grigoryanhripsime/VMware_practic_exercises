@@ -1,7 +1,5 @@
 package VMware_practic_exercises.Java.Data_Structures;
 
-import java.util.LinkedList;
-
 public class SingllyLinkedList {
     private static int size = 0;
     Node head;
@@ -68,15 +66,15 @@ public class SingllyLinkedList {
     }
 
     //deleting element by index
-    public void del(int index) {
+    public Node del(int index) {
         if (index < 0 || index > this.size()) {
             System.out.println("Line 68");
-            return;
+            return null;
         }
         if (index == 0) {
             head = head.next;
             this.size--;
-            return;
+            return null;
         }
         Node cur = head;
         for (int i = 1; i < index; i++) {
@@ -84,11 +82,12 @@ public class SingllyLinkedList {
                 cur = cur.next;
             else {
                 System.out.println("Line 74");
-                return;
+                return cur;
             }
         }
         cur.next = cur.next.next;
         this.size--;
+        return cur;
     }
 
     //deleting the last element
