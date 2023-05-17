@@ -1,4 +1,4 @@
-package Tictactoe.game;
+package VMware_practic_exercises.Java.Tictactoe.game;
 import java.lang.Math;
 public class Bot implements Moveable {
     static int count = 0;

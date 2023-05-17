@@ -1,5 +1,5 @@
-package Tictactoe.game;
-import java.util.Scanner;
+package VMware_practic_exercises.Java.Tictactoe.game;
+
 public class Game {
     private final Player player1;
     private final Player player2;
