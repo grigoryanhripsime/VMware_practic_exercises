@@ -1,9 +1,9 @@
-package Tictactoe;
+package VMware_practic_exercises.Java.Tictactoe;
 
-import Tictactoe.game.Board;
-import Tictactoe.game.Bot;
-import Tictactoe.game.Game;
-import Tictactoe.game.Player;
+import VMware_practic_exercises.Java.Tictactoe.game.Board;
+import VMware_practic_exercises.Java.Tictactoe.game.Bot;
+import VMware_practic_exercises.Java.Tictactoe.game.Game;
+import VMware_practic_exercises.Java.Tictactoe.game.Player;
 
 import java.util.Scanner;
 
