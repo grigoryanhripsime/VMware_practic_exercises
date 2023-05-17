@@ -1,5 +1,3 @@
-package VMware_practic_exercises.Java;
-
 import java.util.Scanner;
 
 public class l2 {
