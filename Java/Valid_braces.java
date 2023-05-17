@@ -1,9 +1,7 @@
-package week3;
+package VMware_practic_exercises.Java;
 
 import java.io.*;
 import java.util.Stack;
-
-
 
 public class Valid_braces {
     public static boolean check(File file) throws IOException {
