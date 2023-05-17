@@ -65,12 +65,13 @@ public class Board {
 
     @Override
     public String toString(){
-        //coverts the board to string like:
-        /*      X | O | X
-                -----------
-                O | X | O
-                -----------
-                O | X | X*/
+//        //coverts the board to string like:
+//        /*      X | O | X
+//                -----------
+//                O | X | O
+//                -----------
+//                O | X | X
+//              */
         return " " +
                 gameBoard[0][0] + " | " +
                 gameBoard[0][1] + " | " +
@@ -88,3 +89,4 @@ public class Board {
     }
 
 }
+*/
