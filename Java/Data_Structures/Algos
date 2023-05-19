@@ -1,0 +1,117 @@
+package week3;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class SortingAlgorithms {
+    public static void main(String[] args) {
+//        int[] arr = {1, 4, 2, 8, 3};
+//        arr = insertion(arr);
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+//        System.out.println();
+//
+//        System.out.println(BinarySearch(arr, 4));
+
+        int[] arr = merge(new int[]{2, 4, 6}, new int[]{1, 3, 5});
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        int[] array = {4, 1, 5, 2, 6, 3};
+        array = sort(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+
+
+        }
+    }
+
+    public static int[] bubble(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int temp;
+            boolean check = true;
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    check = false;
+                }
+            }
+            if (check == true)
+                break;
+        }
+        return arr;
+    }
+
+    public static int[] insertion(int[] arr) {
+        int temp;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    public static boolean BinarySearch(int[] arr, int num) {
+        while (arr.length > 1) {
+            System.out.println(arr.length);
+            if (num == arr[arr.length / 2]) {
+                return true;
+            }
+            if (num > arr[arr.length / 2]) {
+                arr = Arrays.copyOfRange(arr, arr.length / 2, arr.length);
+            }
+            else{
+                arr = Arrays.copyOfRange(arr, 0, arr.length / 2);
+            }
+        }
+        if (arr[0] == num)
+            return true;
+        return false;
+    }
+
+
+    public static int[] sort(int[] arr) {
+        int len = arr.length;
+        int[] arr1 = null, arr2 = null;
+        if (len <= 1) {
+            return arr;
+        }
+        arr1 = Arrays.copyOfRange(arr, 0, arr.length / 2);
+        arr2 = Arrays.copyOfRange(arr, arr.length / 2, arr.length);
+        sort(arr1);
+        sort(arr2);
+        return merge(arr1, arr2);
+    }
+
+
+
+    public static int[] merge(int[] arr1, int[] arr2) {
+        int len;
+        if (arr1.length > arr2.length) {
+            len = arr1.length;
+        }
+        else {
+            len = arr2.length;
+        }
+        int[] arr3 = new int[arr1.length + arr2.length];
+        for (int i = 0; i < len; i++) {
+            if (arr1[i] < arr2[i]) {
+                arr3[2 * i] = arr1[i];
+                arr3[2 * i + 1] = arr2[i];
+            }
+            else {
+                arr3[2 * i] = arr2[i];
+                arr3[2 * i + 1] = arr1[i];
+            }
+        }
+        return arr3;
+    }
+}
